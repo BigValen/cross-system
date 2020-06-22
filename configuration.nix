@@ -47,8 +47,7 @@
   # Enable OpenSSH out of the box.
   services = {
     sshd.enabled = true;
-  services = {
-    dhcpd4 {
+    dhcpd4 = {
       enable = true;
       extraConfig = ''
       option domain-name "contest.fb.com";
@@ -64,11 +63,11 @@
     pixiecore = {
       # pixiecore boot  -d --dhcp-no-bind   bzImage initrd --cmdline='init=/nix/store/jd5gkdggwjak16g81ygp59s4czkvjx0k-nixos-system-nixos-20.03.2176.a84b797b28e/init initrd=initrd loglevel=4' --port 80 --status-port=80
       kernel =  "to be filled in from netboot.nix";
-      initrd =  "to be filled in from netboot.nix";;
+      initrd =  "to be filled in from netboot.nix";
       dhcpNoBind = true;
       cmdLine = "init=/nix/store/jd5gkdggwjak16g81ygp59s4czkvjx0k-nixos-system-nixos-20.03.2176.a84b797b28e/init initrd=initrd loglevel=4";
     };
-  }
+  };
 
   networking = {
     extraHosts = ''
@@ -97,13 +96,13 @@
     hostName = "jumphost.contest.fb.com";
     interfaces = {
       eth0 = {
-        ip4.useDhcp = true;
-      }
+        useDHCP = true;
+      };
       eth1 = {
         ipv4.addresses = [
           { address="192.168.150.1"; prefixLength = 24; }
         ];
-      }
+      };
     };
     nat = {
       enable = true;
